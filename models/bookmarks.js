@@ -1,9 +1,5 @@
 const bookmarks = (sequelize, DataTypes) => {
-    const Bookmarks = sequelize.define('bookmarks', {
-    //   id: {
-    //     type: DataTypes.INTEGER,
-    //     primaryKey: true
-    //   }, 
+    const Bookmarks = sequelize.define('bookmarks', { 
       url : {
           type: DataTypes.STRING(60)
       },

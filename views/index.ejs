@@ -8,16 +8,26 @@
 </head>
 <body>
     <header><h1>Welcome to your page of bookmarks!</h1></header>
-    <div> 
+    <div> <hr>
         <h2> <ul>
-            <% bookmarks.map(bookmarks =>{  %>
-                <li><%=`${bookmarks.url}` %> </li>
+            <% bookmarks.map((bookmarks,index) =>{  %>
+                <li id ='bookmarks'><%=`${bookmarks.url}` %> </li>
+                <form method ="post" action="/bookmarks/<%=bookmarks.id%>?_method=DELETE">
+                <button type="submit" id="<%= index %>" >Delete</button>
+            </form>
+            <form method ="get" action="/update/<%=bookmarks.id%>?_method=UPDATE">
+            
+                <button type="submit" id="<%= index %> " >Update</button>
+            </form>
+
                <% }) %> 
             </ul>
         </h2>
+        <hr>
+        <h2>Enter your new bookmark!</h2>
             <form method="post" action="/addUrl">
-                <input name = "bookmarkUrl" placeholder="Enter URL" >
-                <button name = 'submit'>Submit</button>
+                <input name = "bookmarkUrl" placeholder="Enter URL" id="inputBookmark">
+                <button name = 'submit' id="submit">Submit</button>
             </form>
 
         

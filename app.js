@@ -2,56 +2,38 @@ const express = require('express');
 const app = express();
 const port = 3000;
 require('dotenv').config()
-const { models} = require('./models');
 const methodOverride = require('method-override')
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"))
-// app.use(express.static('public'));
 
 
-app.get('/update/:id', (req,res) => {
-    res.render("update.ejs", {
-        id : req.params.id
-    })
-})
 
-app.get('/', async (req,res) => {
-    const Bookmarks = await models.bookmarks.findAll({})
-    res.render('index.ejs', {
-        bookmarks: Bookmarks
-    })
-})
+const indexRouter = require('./routers/index.js')
+app.use('/', indexRouter)
 
-app.post('/addUrl', async (req,res) => {
 
-    await models.bookmarks.create({
-        url : req.body.bookmarkUrl,
-        categories : req.body.categories,
-        comment: req.body.comment
-    
-    });
+const addRouter = require('./routers/add.js')
+app.use('/addUrl', addRouter)
 
-    res.redirect('/')
-})
 
-app.delete('/bookmarks/:id', async (req,res) => {
-    console.log(`id params : ${req.params.id}`)
-    await models.bookmarks.destroy({ where:  {id : req.params.id}
-    })
-    res.redirect('/')
-})
+const deleteRouter = require('./routers/delete.js')
+ app.use('/bookmarks', deleteRouter)
 
-app.put('/bookmarks/:id', async (req,res) => {
 
-    await models.bookmarks.update({url : req.body.bookmarkUrl},{
-        where : {
-            id : req.params.id
-        }
-     });
-     res.redirect('/')
-})
+const updateRouter = require('./routers/update.js')
+app.use('/bookmarks', updateRouter)
+
+const sortedRouter = require('./routers/sorted.js')
+app.use('/search', sortedRouter)
+
+
+const loginRouter = require('./routers/login.js')
+app.use('/login', loginRouter)
+
+const registerRouter = require('./routers/register.js')
+app.use('/register', registerRouter)
 
 
 app.listen(port, () => {

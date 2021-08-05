@@ -8,11 +8,11 @@ describe("Testing overall bookmark functionality", function(){
         cy.get('#bookmarks').should('contain', 'www.vscode.com')
 
     })
-    
   it('creates task creating task', ()=>{
     cy.task('taskTruncateTables')
       cy.task('createTask', 'www.stackoverflow.com')
       cy.visit('/')
       cy.get('#bookmarks').should('contain', 'www.stackoverflow.com')
   })
+
 })

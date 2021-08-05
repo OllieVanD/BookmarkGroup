@@ -11,6 +11,7 @@ const sequelize = new Sequelize(
 
 const models = {
   bookmarks: require('./bookmarks')(sequelize, DataTypes),
+  login : require('./login') (sequelize, DataTypes),
 };
 
 module.exports = {

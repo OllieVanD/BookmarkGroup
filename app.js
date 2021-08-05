@@ -17,7 +17,7 @@ app.delete('/bookmarks/:id', async (req,res) => {
     res.redirect('/')
 })
 
-app.delete('/updateUrl/:id', async (req,res) => {
+app.put('/bookmarks/:id', async (req,res) => {
 
     await models.bookmarks.update({url : req.body.bookmarkUrl},{
         where : {

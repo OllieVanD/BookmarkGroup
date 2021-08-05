@@ -8,7 +8,7 @@
 </head>
 <body>
         <h2>Enter your new bookmark!</h2>
-            <form method="post" action="/updateUrl/<%=id%>?_DELETE">
+            <form method="post" action="/bookmarks/<%=id%>?_method=PUT">
                 <input name = "bookmarkUrl" placeholder="Enter URL" id="inputBookmark">
                 <button name = 'submit' id="submit">Submit</button>
             </form>

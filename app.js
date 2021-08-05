@@ -10,23 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"))
 // app.use(express.static('public'));
 
-app.delete('/bookmarks/:id', async (req,res) => {
-    console.log(`id params : ${req.params.id}`)
-    await models.bookmarks.destroy({ where:  {id : req.params.id}
-    })
-    res.redirect('/')
-})
-
-app.put('/bookmarks/:id', async (req,res) => {
-
-    await models.bookmarks.update({url : req.body.bookmarkUrl},{
-        where : {
-            id : req.params.id
-        }
-     });
-     res.redirect('/')
-
-})
 
 app.get('/update/:id', (req,res) => {
     res.render("update.ejs", {
@@ -43,9 +26,31 @@ app.get('/', async (req,res) => {
 
 app.post('/addUrl', async (req,res) => {
 
-    await models.bookmarks.create({url : req.body.bookmarkUrl});
+    await models.bookmarks.create({
+        url : req.body.bookmarkUrl,
+        categories : req.body.categories,
+        comment: req.body.comment
+    
+    });
 
     res.redirect('/')
+})
+
+app.delete('/bookmarks/:id', async (req,res) => {
+    console.log(`id params : ${req.params.id}`)
+    await models.bookmarks.destroy({ where:  {id : req.params.id}
+    })
+    res.redirect('/')
+})
+
+app.put('/bookmarks/:id', async (req,res) => {
+
+    await models.bookmarks.update({url : req.body.bookmarkUrl},{
+        where : {
+            id : req.params.id
+        }
+     });
+     res.redirect('/')
 })
 
 

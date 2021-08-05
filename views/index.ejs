@@ -9,9 +9,11 @@
 <body>
     <header><h1>Welcome to your page of bookmarks!</h1></header>
     <div> <hr>
-        <h2> <ul>
+         <ul>
             <% bookmarks.map((bookmarks,index) =>{  %>
-                <li id ='bookmarks'><%=`${bookmarks.url}` %> </li>
+                <li id ='bookmarks'><h5> <%=`${bookmarks.url}` %> </h5>
+                   <p><strong> <%=`${bookmarks.categories}` %> </strong></p>
+                    <p><%=`${bookmarks.comment}` %> </p></li>
                 <form method ="post" action="/bookmarks/<%=bookmarks.id%>?_method=DELETE">
                 <button type="submit" id="<%= index %>" >Delete</button>
             </form>
@@ -22,11 +24,13 @@
 
                <% }) %> 
             </ul>
-        </h2>
+        
         <hr>
         <h2>Enter your new bookmark!</h2>
             <form method="post" action="/addUrl">
-                <input name = "bookmarkUrl" placeholder="Enter URL" id="inputBookmark">
+                <input name = "bookmarkUrl" placeholder="Enter URL" id="inputBookmark"><br>
+                <input name = "categories" placeholder="Enter Category" id="inputCategory"><br>
+                <input name = "comment" placeholder="Enter Comment" id="inputComment"><br>
                 <button name = 'submit' id="submit">Submit</button>
             </form>
 

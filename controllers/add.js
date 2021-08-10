@@ -1,12 +1,14 @@
 require('dotenv').config()
-const { models } = require('../models');
+const { Bookmark} = require('../models');
 
 const add =  async (req, res) => {
     console.log("Add function used")
-    await models.bookmarks.create({
+    await Bookmark.create({
         url: req.body.bookmarkUrl,
         categories: req.body.categories,
-        comment: req.body.comment
+        // LoginId : 2
+
+        // comment: req.body.comment
 
     });
 

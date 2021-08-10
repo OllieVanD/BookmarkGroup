@@ -1,11 +1,11 @@
 require('dotenv').config()
-const { models  } = require('../models');
+const { Bookmark} = require('../models');
 
 const update = async (req,res) => {
-    await models.bookmarks.update({
+    await Bookmark.update({
         url: req.body.bookmarkUrl,
         categories: req.body.bookmarkCategory,
-        comment: req.body.bookmarkComment
+        // comment: req.body.bookmarkComment
     },
         {
             where: {

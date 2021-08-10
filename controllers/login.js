@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { models} = require('../models');
+const { Login } = require('../models');
 
 
 const Load = async (req, res) => {

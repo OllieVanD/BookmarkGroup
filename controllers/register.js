@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { models} = require('../models');
+const { Login } = require('../models');
 
 
 const Load = async (req, res) => {
@@ -7,7 +7,7 @@ const Load = async (req, res) => {
 }
 
 const register = async(req,res) => {
-    await models.login.create({
+    await Login.create({
         username: req.body.username,
         password: req.body.password,
     });

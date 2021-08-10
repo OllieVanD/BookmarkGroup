@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Login extends Model {
+  class Bookmark extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,15 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.Bookmarks = this.hasMany(models.Login, { onDelete: 'cascade' })
+      // this.Comments = this.hasMany(models.Comment, { onDelete: 'cascade' })
+      // this.Login = this.belongsTo(models.Login)
     }
   };
-  Login.init({
-    username: DataTypes.STRING,
-    password: DataTypes.STRING
+  Bookmark.init({
+    url: DataTypes.STRING,
+    categories: DataTypes.STRING,
+    LoginId: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Login',
+    modelName: 'Bookmark',
   });
-  return Login;
+  return Bookmark;
 };

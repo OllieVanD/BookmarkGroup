@@ -13,7 +13,7 @@ const update = async (req,res) => {
             }
         });
 
-    res.redirect('/')
+    res.redirect('/home')
 }
 
 const loadPage = (req, res) => {

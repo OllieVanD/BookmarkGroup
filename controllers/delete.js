@@ -6,7 +6,7 @@ const deleteBookmark = async (req,res) => {
     await Bookmark.destroy({ where:  {
         id : req.params.id}
     })
-    res.redirect('/')
+    res.redirect('/home')
 }
 
 module.exports = { deleteBookmark}

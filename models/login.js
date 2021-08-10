@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.Bookmarks = this.hasMany(models.Login, { onDelete: 'cascade' })
+      // this.Bookmarks = this.hasMany(models.Logins, {onDelete: 'cascade' })
     }
   };
   Login.init({

@@ -10,13 +10,17 @@
   
     <header><h1><a href = "/">Welcome to your page of bookmarks! </a></h1></header>
     <h2 ><a  href = "./login"> login </a></h2>
+    <form action="/logout" method="get"> 
+        <h2><input type="submit" value="Logout"> </h2>
+    </form>
     <div> <hr>
         <form action="/search" method="post">
         <input type="text" placeholder="Search Categories" name="Search">
         <button type="submit" >Search! </button>
+        
         </form>
          <ul>
-            <% bookmarks.map((bookmarks,index) =>{  %>
+           <% bookmarks.map((bookmarks,index) =>{  %>
                 <li id ='bookmarks'><h5> <%=`${bookmarks.url}` %> </h5>
                    <p><strong> <%=`${bookmarks.categories}` %> </strong></p>
                     <!-- <p><%=`${bookmarks.comment}` %> </p></li> -->
@@ -27,7 +31,7 @@
             
                 <button type="submit" id="<%= index %> " >Update</button>
             </form>
-
+        
                <% }) %> 
             </ul>
         

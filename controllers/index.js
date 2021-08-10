@@ -3,21 +3,28 @@ const { Bookmark} = require('../models');
 
 
 const loadPage = async (req, res) => {
-	console.log('in the get method!');
-console.log(Bookmark)
     if (Bookmark === undefined) {
-        console.log('Testtt')
          res.render('index.ejs',{
     bookmarks : ""})} 
     else{
     const Bookmarks = await Bookmark.findAll({
-        include: {
-            all: true
-          }
+        where : { 
+            LoginId : req.session.userId
+        }
+        // include: {
+        //     all: true
+        //   }
     })
+
+    if (req.session.userId !== undefined) 
+    {
 	res.render('index.ejs',{
-    bookmarks: Bookmarks
+    bookmarks: Bookmarks,
+    userId : req.session.userId
     });
+} else {
+    res.redirect('/')
+}
 }
 }
 
